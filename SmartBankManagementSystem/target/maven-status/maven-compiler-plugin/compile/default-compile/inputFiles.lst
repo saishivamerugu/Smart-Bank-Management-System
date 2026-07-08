@@ -1,0 +1,15 @@
+C:\Users\merug\Documents\workspace-spring-tools-for-eclipse-4.32.1.RELEASE\SmartBankManagementSystem\src\main\java\com\project\config\SecurityConfig.java
+C:\Users\merug\Documents\workspace-spring-tools-for-eclipse-4.32.1.RELEASE\SmartBankManagementSystem\src\main\java\com\project\controller\AdminController.java
+C:\Users\merug\Documents\workspace-spring-tools-for-eclipse-4.32.1.RELEASE\SmartBankManagementSystem\src\main\java\com\project\controller\UserController.java
+C:\Users\merug\Documents\workspace-spring-tools-for-eclipse-4.32.1.RELEASE\SmartBankManagementSystem\src\main\java\com\project\entity\Admin.java
+C:\Users\merug\Documents\workspace-spring-tools-for-eclipse-4.32.1.RELEASE\SmartBankManagementSystem\src\main\java\com\project\entity\Loan.java
+C:\Users\merug\Documents\workspace-spring-tools-for-eclipse-4.32.1.RELEASE\SmartBankManagementSystem\src\main\java\com\project\entity\Transaction.java
+C:\Users\merug\Documents\workspace-spring-tools-for-eclipse-4.32.1.RELEASE\SmartBankManagementSystem\src\main\java\com\project\entity\User.java
+C:\Users\merug\Documents\workspace-spring-tools-for-eclipse-4.32.1.RELEASE\SmartBankManagementSystem\src\main\java\com\project\repository\AdminRepository.java
+C:\Users\merug\Documents\workspace-spring-tools-for-eclipse-4.32.1.RELEASE\SmartBankManagementSystem\src\main\java\com\project\repository\LoanRepository.java
+C:\Users\merug\Documents\workspace-spring-tools-for-eclipse-4.32.1.RELEASE\SmartBankManagementSystem\src\main\java\com\project\repository\TransactionRepository.java
+C:\Users\merug\Documents\workspace-spring-tools-for-eclipse-4.32.1.RELEASE\SmartBankManagementSystem\src\main\java\com\project\repository\UserRepository.java
+C:\Users\merug\Documents\workspace-spring-tools-for-eclipse-4.32.1.RELEASE\SmartBankManagementSystem\src\main\java\com\project\service\AdminService.java
+C:\Users\merug\Documents\workspace-spring-tools-for-eclipse-4.32.1.RELEASE\SmartBankManagementSystem\src\main\java\com\project\service\OtpService.java
+C:\Users\merug\Documents\workspace-spring-tools-for-eclipse-4.32.1.RELEASE\SmartBankManagementSystem\src\main\java\com\project\service\UserService.java
+C:\Users\merug\Documents\workspace-spring-tools-for-eclipse-4.32.1.RELEASE\SmartBankManagementSystem\src\main\java\com\project\SmartBankManagementSystemApplication.java

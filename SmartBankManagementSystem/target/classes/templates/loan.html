@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <title>Loan Application</title>
+
+</head>
+
+<body>
+
+<h2>Apply Loan</h2>
+
+<p th:text="${success}"></p>
+
+<form th:action="@{/applyLoan}" method="post">
+
+    <select name="loanType">
+
+        <option>Home Loan</option>
+
+        <option>Car Loan</option>
+
+        <option>Education Loan</option>
+
+        <option>Personal Loan</option>
+
+    </select>
+
+    <br><br>
+
+    <input type="number"
+           name="loanAmount"
+           placeholder="Enter Loan Amount"
+           required>
+
+    <br><br>
+
+    <button type="submit">
+
+        Apply Loan
+
+    </button>
+
+</form>
+
+</body>
+
+</html>

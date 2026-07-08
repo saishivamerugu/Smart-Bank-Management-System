@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <title>Verify OTP</title>
+
+</head>
+
+<body>
+
+<h2>OTP Verification</h2>
+
+<p th:text="${message}"></p>
+
+<p style="color:red;"
+   th:text="${error}"></p>
+
+<form th:action="@{/verifyOtp}"
+      method="post">
+
+    <input type="number"
+           name="otp"
+           placeholder="Enter OTP">
+
+    <br><br>
+
+    <button type="submit">
+
+        Verify OTP
+
+    </button>
+
+</form>
+
+</body>
+
+</html>

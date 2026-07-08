@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <title>Mini Statement</title>
+
+    <style>
+
+        body{
+            font-family: Arial;
+        }
+
+        table{
+            width: 90%;
+            margin: auto;
+            border-collapse: collapse;
+            margin-top: 40px;
+        }
+
+        th, td{
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th{
+            background-color: lightgray;
+        }
+
+        h2{
+            text-align: center;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<h2>Mini Statement</h2>
+
+<table>
+
+    <tr>
+
+        <th>ID</th>
+        <th>Sender</th>
+        <th>Receiver</th>
+        <th>Type</th>
+        <th>Amount</th>
+        <th>Time</th>
+		<th>Fraud Status</th>
+
+    </tr>
+
+    <tr th:each="t : ${transactions}">
+
+        <td th:text="${t.id}"></td>
+
+        <td th:text="${t.senderEmail}"></td>
+
+        <td th:text="${t.receiverEmail}"></td>
+
+        <td th:text="${t.transactionType}"></td>
+
+        <td th:text="${t.amount}"></td>
+
+        <td th:text="${t.transactionTime}"></td>
+		
+		<td th:text="${t.fraudStatus}"></td>
+
+    </tr>
+
+</table>
+
+</body>
+
+</html>

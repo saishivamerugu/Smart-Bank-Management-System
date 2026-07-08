@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <title>Login</title>
+
+    <style>
+
+        body{
+            font-family: Arial;
+            background-color: #f2f2f2;
+        }
+
+        .container{
+            width: 400px;
+            margin: auto;
+            margin-top: 80px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        input{
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        button{
+            width: 100%;
+            padding: 10px;
+            margin-top: 15px;
+            background-color: green;
+            color: white;
+            border: none;
+        }
+
+        h2{
+            text-align: center;
+        }
+
+        .error{
+            color: red;
+            text-align: center;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Smart Bank Login</h2>
+
+    <p class="error" th:text="${error}"></p>
+
+    <form th:action="@{/loginUser}" method="post">
+
+        <input type="email"
+               name="email"
+               placeholder="Enter Email"
+               required>
+
+        <input type="password"
+               name="password"
+               placeholder="Enter Password"
+               required>
+
+        <button type="submit">Login</button>
+
+    </form>
+
+</div>
+
+</body>
+
+</html>

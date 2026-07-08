@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Admin Dashboard</title>
+</head>
+
+<body>
+
+<h2>Loan Requests</h2>
+
+<table border="1">
+
+    <tr>
+
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Loan Type</th>
+        <th>Amount</th>
+        <th>Status</th>
+        <th>Approve</th>
+        <th>Reject</th>
+
+    </tr>
+
+    <tr th:each="loan : ${loans}">
+
+        <td th:text="${loan.id}"></td>
+
+        <td th:text="${loan.customerName}"></td>
+
+        <td th:text="${loan.customerEmail}"></td>
+
+        <td th:text="${loan.loanType}"></td>
+
+        <td th:text="${loan.loanAmount}"></td>
+
+        <td th:text="${loan.status}"></td>
+
+        <td>
+
+            <a th:href="@{/approveLoan(id=${loan.id})}">
+
+                Approve
+
+            </a>
+
+        </td>
+
+        <td>
+
+            <a th:href="@{/rejectLoan(id=${loan.id})}">
+
+                Reject
+
+            </a>
+
+        </td>
+
+    </tr>
+
+</table>
+
+<br><br>
+
+<a href="/viewUsers">
+
+    View All Users
+
+</a>
+
+</body>
+
+</html>
