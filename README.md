@@ -4,7 +4,7 @@
 
 The **Smart Bank Management System** is a web-based banking application that enables users to manage bank accounts, perform transactions, and securely access banking services online. The system provides a seamless and secure platform for customers and administrators to handle banking operations efficiently.
 
----
+--- 
 
 ## Features
 
