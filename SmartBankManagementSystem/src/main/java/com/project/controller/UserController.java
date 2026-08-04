@@ -47,68 +47,43 @@ public class UserController {
     
     @PostMapping("/verifyOtp")
     public String verifyOtp(int otp, HttpSession session, Model model) {
-
         int generatedOtp = (int) session.getAttribute("otp");
-
-        User user =
-                (User) session.getAttribute("tempUser");
-
+        User user = (User) session.getAttribute("tempUser");
         if(otp == generatedOtp) {
-
             userService.registerUser(user);
-
-            model.addAttribute(
-                    "success",
-                    "Registration Successful");
-
+            model.addAttribute("success", "Registration Successful");
             return "login";
-
-        } else {
-
-            model.addAttribute(
-                    "error",
-                    "Invalid OTP");
-
+        } 
+        else {
+            model.addAttribute("error", "Invalid OTP");
             return "verifyOtp";
-
         }
 
     }
 
-    // LOGIN PAGE
+    // Login Page
     @GetMapping("/login")
     public String loginPage() {
-
         return "login";
     }
 
-    // LOGIN USER
+    // Login User
     @PostMapping("/loginUser")
-    public String loginUser(String email,
-                            String password,
-                            Model model,
-                            HttpSession session) {
-
+    public String loginUser(String email, String password, Model model, HttpSession session) {
         User validUser = userService.loginUser(email, password);
-
         if(validUser != null) {
-
             session.setAttribute("loggedInUser", validUser);
-
             model.addAttribute("user", validUser);
-
             return "dashboard";
-
-        } else {
-
+        } 
+        else {
             model.addAttribute("error", "Invalid Email or Password");
-
             return "login";
         }
 
     }
     
- // DEPOSIT MONEY
+ // Deposit Money
     @PostMapping("/deposit")
     public String depositMoney(double amount, HttpSession session, Model model) {
         User user = (User) session.getAttribute("loggedInUser");
@@ -137,89 +112,43 @@ public class UserController {
  
  // TRANSFER MONEY
     @PostMapping("/transfer")
-    public String transferMoney(String receiverEmail,
-                                double amount,
-                                HttpSession session,
-                                Model model) {
-
-        // GET LOGGED USER
-        User sender =
-                (User) session.getAttribute(
-                        "loggedInUser");
-
-        // SESSION CHECK
+    public String transferMoney(String receiverEmail, double amount, HttpSession session, Model model) {
+        // Get Logged User
+        User sender = (User) session.getAttribute("loggedInUser");
+        // Session Check
         if(sender == null) {
-
             return "redirect:/login";
-
         }
 
-        // TRANSFER
-        String result =
-                userService.transferMoney(
-                        sender,
-                        receiverEmail,
-                        amount);
-
-        // GET UPDATED USER
-        User updatedUser =
-                userRepository.findByEmail(
-                        sender.getEmail());
-
-        // UPDATE SESSION
-        session.setAttribute(
-                "loggedInUser",
-                updatedUser);
-
+        // Transfer
+        String result = userService.transferMoney(sender, receiverEmail, amount);
+        // Get Updated User
+        User updatedUser = userRepository.findByEmail(sender.getEmail());
+        // Upate Session
+        session.setAttribute("loggedInUser", updatedUser);
         // SEND USER TO DASHBOARD
-        model.addAttribute(
-                "user",
-                updatedUser);
+        model.addAttribute("user", updatedUser);
 
         // SUCCESS / ERROR MESSAGE
         if(result.contains("Successful")) {
-
-            model.addAttribute(
-                    "success",
-                    result);
-
-        } else {
-
-            model.addAttribute(
-                    "error",
-                    result);
-
+            model.addAttribute("success", result);
+        } 
+        else {
+            model.addAttribute("error", result);
         }
-
         return "dashboard";
-
     }
     
     // Mini Statement Method 
     @GetMapping("/statement")
-    public String miniStatement(HttpSession session,
-                                Model model) {
-
-        User user =
-                (User) session.getAttribute(
-                        "loggedInUser");
-
+    public String miniStatement(HttpSession session, Model model) {
+        User user = (User) session.getAttribute("loggedInUser");
         if(user == null) {
-
             return "redirect:/login";
-
         }
-
-        List<Transaction> transactions =
-                userService.getMiniStatement(
-                        user.getEmail());
-
-        model.addAttribute(
-                "transactions",
-                transactions);
-
+        List<Transaction> transactions = userService.getMiniStatement(user.getEmail());
+        model.addAttribute("transactions", transactions);
         return "statement";
-
     }
     
  // Loan Page
@@ -231,9 +160,7 @@ public class UserController {
     // Apply Loan
     @PostMapping("/applyLoan")
     public String applyLoan(Loan loan, HttpSession session, Model model) {
-
         User user = (User) session.getAttribute("loggedInUser");
-
         userService.applyLoan(user, loan);
         model.addAttribute("success","Loan Applied Successfully");
         return "loan";
