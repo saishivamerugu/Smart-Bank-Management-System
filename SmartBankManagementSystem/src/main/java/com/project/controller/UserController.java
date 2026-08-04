@@ -26,49 +26,29 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    // REGISTER PAGE
+    // Registration Page
     @GetMapping("/register")
     public String registerPage(Model model) {
-
         model.addAttribute("user", new User());
-
         return "register";
     }
 
-    // SAVE USER
+    // Save User
     @PostMapping("/saveUser")
-    public String saveUser(User user,
-                           HttpSession session,
-                           Model model) {
-
-        // GENERATE OTP
+    public String saveUser(User user, HttpSession session, Model model) {
+        // Generates and sends the otp
         int otp = otpService.generateOtp();
-
-        // SEND OTP
-        otpService.sendOtp(user.getEmail(),
-                otp);
-
-        // STORE IN SESSION
+        otpService.sendOtp(user.getEmail(), otp);
         session.setAttribute("otp", otp);
-
-        session.setAttribute("tempUser",
-                user);
-
-        model.addAttribute(
-                "message",
-                "OTP Sent To Your Email");
-
+        session.setAttribute("tempUser", user);
+        model.addAttribute("message", "OTP was Sent To Your Email");
         return "verifyOtp";
-
     }
     
     @PostMapping("/verifyOtp")
-    public String verifyOtp(int otp,
-                            HttpSession session,
-                            Model model) {
+    public String verifyOtp(int otp, HttpSession session, Model model) {
 
-        int generatedOtp =
-                (int) session.getAttribute("otp");
+        int generatedOtp = (int) session.getAttribute("otp");
 
         User user =
                 (User) session.getAttribute("tempUser");
