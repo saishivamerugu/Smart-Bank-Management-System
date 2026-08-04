@@ -249,41 +249,28 @@ public class UserController {
 
     }
     
- // LOAN PAGE
+ // Loan Page
     @GetMapping("/loan")
     public String loanPage() {
-
         return "loan";
     }
 
-    // APPLY LOAN
+    // Apply Loan
     @PostMapping("/applyLoan")
-    public String applyLoan(Loan loan,
-                            HttpSession session,
-                            Model model) {
+    public String applyLoan(Loan loan, HttpSession session, Model model) {
 
-        User user =
-                (User) session.getAttribute("loggedInUser");
+        User user = (User) session.getAttribute("loggedInUser");
 
         userService.applyLoan(user, loan);
-
-        model.addAttribute("success",
-                "Loan Applied Successfully");
-
+        model.addAttribute("success","Loan Applied Successfully");
         return "loan";
     }
 
-    // VIEW LOANS
+    // View Loans
     @GetMapping("/viewLoans")
-    public String viewLoans(HttpSession session,
-                            Model model) {
-
-        User user =
-                (User) session.getAttribute("loggedInUser");
-
-        model.addAttribute("loans",
-                userService.getUserLoans(user.getEmail()));
-
+    public String viewLoans(HttpSession session, Model model) {
+        User user = (User) session.getAttribute("loggedInUser");
+        model.addAttribute("loans", userService.getUserLoans(user.getEmail()));
         return "viewloans";
 
     }
