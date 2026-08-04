@@ -110,57 +110,30 @@ public class UserController {
     
  // DEPOSIT MONEY
     @PostMapping("/deposit")
-    public String depositMoney(double amount,
-                               HttpSession session,
-                               Model model) {
-
+    public String depositMoney(double amount, HttpSession session, Model model) {
         User user = (User) session.getAttribute("loggedInUser");
-
         User updatedUser = userService.depositMoney(user, amount);
-
         session.setAttribute("loggedInUser", updatedUser);
-
         model.addAttribute("user", updatedUser);
-
-        model.addAttribute("success",
-                "Money Deposited Successfully");
-
+        model.addAttribute("success", "Money Deposited Successfully");
         return "dashboard";
-
     }
 
-    // WITHDRAW MONEY
+    // Withdraw money
     @PostMapping("/withdraw")
-    public String withdrawMoney(double amount,
-                                HttpSession session,
-                                Model model) {
-
+    public String withdrawMoney(double amount, HttpSession session, Model model) {
         User user = (User) session.getAttribute("loggedInUser");
-
-        User updatedUser =
-                userService.withdrawMoney(user, amount);
-
+        User updatedUser = userService.withdrawMoney(user, amount);
         if(updatedUser == null) {
-
             model.addAttribute("user", user);
-
-            model.addAttribute("error",
-                    "Insufficient Balance");
-
+            model.addAttribute("error", "Insufficient Balance");
             return "dashboard";
         }
-
         session.setAttribute("loggedInUser", updatedUser);
-
         model.addAttribute("user", updatedUser);
-
-        model.addAttribute("success",
-                "Money Withdrawn Successfully");
-
+        model.addAttribute("success", "Money Withdrawn Successfully");
         return "dashboard";
-
     }
- // TRANSFER MONEY
  
  // TRANSFER MONEY
     @PostMapping("/transfer")
