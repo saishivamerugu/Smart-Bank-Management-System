@@ -26,7 +26,6 @@ public class AdminService {
 
     // ADMIN LOGIN
     public Admin loginAdmin(String email, String password) {
-
         return adminRepository.findByEmailAndPassword( email,password);
 
     }
