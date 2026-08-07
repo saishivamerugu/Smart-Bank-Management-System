@@ -18,13 +18,11 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
-    // ADMIN LOGIN PAGE
     @GetMapping("/admin")
     public String adminLoginPage() {
         return "adminlogin";
     }
 
-    // ADMIN LOGIN
     @PostMapping("/adminLogin")
     public String adminLogin(String email, String password, Model model, HttpSession session) {
         Admin admin = adminService.loginAdmin(email, password);
@@ -37,8 +35,7 @@ public class AdminController {
             return "adminlogin";
         }
     }
-
-    // APPROVE LOAN
+    
     @GetMapping("/approveLoan")
     public String approveLoan(@RequestParam int id, Model model) {
         adminService.approveLoan(id);
@@ -46,7 +43,6 @@ public class AdminController {
         return "adminDashboard";
     }
 
-    // REJECT LOAN
     @GetMapping("/rejectLoan")
     public String rejectLoan(@RequestParam int id, Model model) {
         adminService.rejectLoan(id);
@@ -54,7 +50,6 @@ public class AdminController {
         return "adminDashboard";
     }
 
-    // VIEW USERS
     @GetMapping("/viewUsers")
     public String viewUsers(Model model) {
         model.addAttribute("users",adminService.getAllUsers());
