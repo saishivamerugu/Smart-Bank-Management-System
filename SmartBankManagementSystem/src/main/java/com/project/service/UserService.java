@@ -36,15 +36,11 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    // LOGIN USER
-    public User loginUser(String email, String password) {
-
+      public User loginUser(String email, String password) {
         User user = userRepository.findByEmail(email);
-
         if(user != null && passwordEncoder.matches(password, user.getPassword())) {
             return user;
         }
-
         return null;
     }
 
@@ -61,7 +57,6 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    // WITHDRAW MONEY
     public User withdrawMoney(User user, double amount) {
         if(amount > user.getBalance()) {
             return null;
@@ -79,22 +74,15 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    // TRANSFER MONEY
     public String transferMoney(User sender, String receiverEmail,double amount) {
-        if(sender == null) 
-            return "Session Expired Please Login Again";
-
+        if(sender == null) return "Session Expired Please Login Again";
         if(amount <= 0) return "Invalid Amount";
          User receiver = userRepository.findByEmail(receiverEmail);
         if(receiver == null) return "Receiver Account Not Found";
         if(sender.getEmail().equals(receiverEmail)) {
             return "Cannot Transfer To Same Account";
         }
-
-        if(amount > sender.getBalance()) {
-            return "Insufficient Balance";
-        }
-
+        if(amount > sender.getBalance()) return "Insufficient Balance";     
         LocalDateTime start = LocalDateTime.now().toLocalDate().atStartOfDay();
         LocalDateTime end = LocalDateTime.now();
         List<Transaction> todayTransactions = transactionRepository.findBySenderEmailAndTransactionTimeBetween(sender.getEmail(), start, end);
@@ -104,12 +92,7 @@ public class UserService {
                 dailyTotal += t.getAmount();
             }
         }
-
-        if(dailyTotal + amount > 100000) {
-            return "Daily Transfer Limit Exceeded";
-
-        }
-
+        if(dailyTotal + amount > 100000) return "Daily Transfer Limit Exceeded";
         sender.setBalance(sender.getBalance() - amount);
         receiver.setBalance(receiver.getBalance() + amount);
         userRepository.save(sender);
@@ -125,7 +108,6 @@ public class UserService {
         } else {
             transaction.setFraudStatus("SAFE");
         }
-
         transactionRepository.save(transaction);
         if(amount > 50000) {
             return "Transfer Successful (Fraud Alert Generated)";
@@ -133,14 +115,12 @@ public class UserService {
         return "Money Transfer Successful";
     }
 
-    // MINI STATEMENT
     public List<Transaction>
     getMiniStatement(String email) {
         return transactionRepository.findBySenderEmailOrReceiverEmailOrderByTransactionTimeDesc(email,email);
 
     }
 
-    // APPLY LOAN
     public Loan applyLoan(User user,Loan loan) {
         loan.setCustomerName(user.getFullName());
         loan.setCustomerEmail(user.getEmail());
@@ -148,7 +128,6 @@ public class UserService {
         return loanRepository.save(loan);
     }
 
-    // VIEW USER LOANS
     public List<Loan>
     getUserLoans(String email) {
         return loanRepository.findByCustomerEmail(email);
