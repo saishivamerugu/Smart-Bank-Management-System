@@ -26,14 +26,12 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    // Registration Page
     @GetMapping("/register")
     public String registerPage(Model model) {
         model.addAttribute("user", new User());
         return "register";
     }
-
-    // Save User
+    
     @PostMapping("/saveUser")
     public String saveUser(User user, HttpSession session, Model model) {
         // Generates and sends the otp
@@ -60,14 +58,12 @@ public class UserController {
         }
 
     }
-
-    // Login Page
+    
     @GetMapping("/login")
     public String loginPage() {
         return "login";
     }
 
-    // Login User
     @PostMapping("/loginUser")
     public String loginUser(String email, String password, Model model, HttpSession session) {
         User validUser = userService.loginUser(email, password);
@@ -83,7 +79,6 @@ public class UserController {
 
     }
     
- // Deposit Money
     @PostMapping("/deposit")
     public String depositMoney(double amount, HttpSession session, Model model) {
         User user = (User) session.getAttribute("loggedInUser");
@@ -94,7 +89,6 @@ public class UserController {
         return "dashboard";
     }
 
-    // Withdraw money
     @PostMapping("/withdraw")
     public String withdrawMoney(double amount, HttpSession session, Model model) {
         User user = (User) session.getAttribute("loggedInUser");
@@ -109,27 +103,15 @@ public class UserController {
         model.addAttribute("success", "Money Withdrawn Successfully");
         return "dashboard";
     }
- 
- // TRANSFER MONEY
+
     @PostMapping("/transfer")
     public String transferMoney(String receiverEmail, double amount, HttpSession session, Model model) {
-        // Get Logged User
         User sender = (User) session.getAttribute("loggedInUser");
-        // Session Check
-        if(sender == null) {
-            return "redirect:/login";
-        }
-
-        // Transfer
+        if(sender == null) return "redirect:/login";
         String result = userService.transferMoney(sender, receiverEmail, amount);
-        // Get Updated User
         User updatedUser = userRepository.findByEmail(sender.getEmail());
-        // Upate Session
         session.setAttribute("loggedInUser", updatedUser);
-        // SEND USER TO DASHBOARD
         model.addAttribute("user", updatedUser);
-
-        // SUCCESS / ERROR MESSAGE
         if(result.contains("Successful")) {
             model.addAttribute("success", result);
         } 
@@ -139,7 +121,6 @@ public class UserController {
         return "dashboard";
     }
     
-    // Mini Statement Method 
     @GetMapping("/statement")
     public String miniStatement(HttpSession session, Model model) {
         User user = (User) session.getAttribute("loggedInUser");
@@ -151,13 +132,11 @@ public class UserController {
         return "statement";
     }
     
- // Loan Page
     @GetMapping("/loan")
     public String loanPage() {
         return "loan";
     }
 
-    // Apply Loan
     @PostMapping("/applyLoan")
     public String applyLoan(Loan loan, HttpSession session, Model model) {
         User user = (User) session.getAttribute("loggedInUser");
@@ -166,7 +145,6 @@ public class UserController {
         return "loan";
     }
 
-    // View Loans
     @GetMapping("/viewLoans")
     public String viewLoans(HttpSession session, Model model) {
         User user = (User) session.getAttribute("loggedInUser");
