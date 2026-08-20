@@ -199,7 +199,7 @@ cd Smart-Bank-Management-System
 ```
 
 ### Configure Database
-
+   
 Update the `application.properties` file:
 
 ```properties
