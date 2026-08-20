@@ -31,7 +31,7 @@ The **Smart Bank Management System** is a web-based banking application that ena
 
 ---
 
-## Tech Stack
+## Tech Stack  
 
 ### Backend
 - Java
