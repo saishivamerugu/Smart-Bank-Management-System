@@ -8,7 +8,7 @@ The **Smart Bank Management System** is a web-based banking application that ena
 
 ## Features
 
-### Customer Features
+### Customer Featur
 - User Registration and Login
 - Secure Authentication & Authorization
 - Create Bank Account
